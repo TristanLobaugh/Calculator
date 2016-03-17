@@ -48,7 +48,15 @@ body{
 	background-color: black;
 	color: white;
 }
-
+#meaning{
+	position: absolute;
+	left: -1000px;
+	top: 40%;
+}
+#meaning.move{
+	left: 2000px;
+	transition: all 10s ease;
+}
 
 
 

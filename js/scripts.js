@@ -1,11 +1,27 @@
 $(document).ready(function(){
+var curScreenVal;
+var keyID;
+	
+	$(".operator, .number").click(function(){
+			curScreenVal = $(".screen").val();
+			console.dir(this);
+			if($(this).hasClass("equal")){
+				doIt();
+			}
+			else if($(this).hasClass("clear")){
+				$(".screen").val("");
+			}
+			else	{
+			$(".screen").val(curScreenVal + this.value);
+			}
+		});
 
 	document.onkeyup = keyCheck;
 
 	function keyCheck(){
-		var keyID = event.keyCode;
+		keyID = event.keyCode;
 		console.log(keyID);
-		var curScreenVal = $(".screen").val();
+		curScreenVal = $(".screen").val();
 		switch(keyID){
 			case 49:
 				$(".screen").val(curScreenVal + 1);
@@ -37,7 +53,7 @@ $(document).ready(function(){
 			case 48:
 				$(".screen").val(curScreenVal + 0);
 				break;
-			case 88:
+			case 106:
 				$(".screen").val(curScreenVal + "*");
 				break;
 			case 191:
@@ -54,6 +70,12 @@ $(document).ready(function(){
 				break;
 			case 13:
 				doIt();
+				break;
+			case 8:
+				$(".screen").val(curScreenVal.slice(0, -1));
+				break;
+			case 67:
+				$(".screen").val("");
 				break;		
 			default:
 			alert("huh?");
@@ -77,6 +99,9 @@ function doIt(){
 		}
 	}
 	$(".screen").val(total);
+	if(total === 42){
+		$("#meaning").addClass("move");
+	}
 }
 
 
